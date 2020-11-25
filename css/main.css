@@ -30,13 +30,44 @@ ul{
 }
 
 header{
-    position: fixed;
+    position: flex;
     width: 100%;
     top: 0;
     left: 0;
     background: -webkit-gradient(linear, left top, left bottom, from(#21517c), to(#000000));; /* #21517c */
 }
 
+.cards{
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    align-items: center;
+}
+.card1{
+    border: solid 5px rgb(101, 155, 155);
+    border-radius: 20px;
+    width: 80%;
+    height: 200px;
+    background-color: #21517c;
+    padding: 2px;
+    margin: 5px;
+    box-shadow: 2px 2px #ffffff;
+
+}
+.dla{
+    font-family: 'Architects Daughter';
+    font-weight: 400;
+    text-shadow: 1px 1px #2b25259a;
+}
+.card1 p{
+    padding: 5px;
+}
+.card2{
+    width: 200px;
+    height: 200px;
+    background-color: #21517c;
+    box-shadow: 2px 2px #ffffff;
+}
 .content-header{
     display: flex;
     align-items: center;
