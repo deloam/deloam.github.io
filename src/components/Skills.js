@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import './Skills.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 // for reuse
 const Icon = (nome, cor) => {
@@ -20,15 +18,16 @@ const Skills = () => {
     const skillsRef = useRef([]);
 
     useEffect(() => {
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-        });
+        const getCanvasContext = (canvas) => {
+            const isTestDom = typeof navigator !== 'undefined' && navigator.userAgent.toLowerCase().includes('jsdom');
+            if (isTestDom || !canvas || typeof canvas.getContext !== 'function') return null;
+            return canvas.getContext('2d');
+        };
 
         const drawSkillCircle = (canvas, currentPercentage, colors) => {
-            const ctx = canvas.getContext('2d');
+            const ctx = getCanvasContext(canvas);
+            if (!ctx) return;
+
             const radius = canvas.width / 2;
             const startAngle = -0.5 * Math.PI;
             const endAngle = (currentPercentage / 100) * 2 * Math.PI + startAngle;
@@ -81,7 +80,7 @@ const Skills = () => {
                     const percentage = skillsData[index].percentage;
                     const colors = skillsData[index].colors;
 
-                    if (colors && colors.length >= 2) {
+                    if (getCanvasContext(canvas) && colors && colors.length >= 2) {
                         animateSkillCircle(canvas, percentage, colors);
                         skill.classList.add('animated');
                     }
@@ -121,8 +120,11 @@ const Skills = () => {
     }, []);
 
     return (
-        <section id="skills" data-aos="fade-up" data-aos-delay="10">
-            <h3>{' ⚙️ HABILIDADES'}</h3>
+        <section id="skills">
+            <h3 className="section-heading">
+                <i className="fa-solid fa-layer-group"></i>
+                Habilidades
+            </h3>
             <div className="skills-container">
                 {skillsData.map((skill, index) => (
                     <div
@@ -133,12 +135,12 @@ const Skills = () => {
                         <div className="skill-circle" data-skill={skill.percentage}>
                             <canvas></canvas>
                             {skill.icon}
-                            {/* Tooltip ao passar o mouse */}
                             <div className="tooltip">
                                 {skill.name}: {skill.percentage}%
                             </div>
                         </div>
                         <span className="skill-name">{skill.name}</span>
+                        <span className="skill-percent">{skill.percentage}%</span>
                     </div>
                 ))}
             </div>

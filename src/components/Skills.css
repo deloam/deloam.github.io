@@ -1,89 +1,137 @@
-/* Estilos para a seção de habilidades */
 .skills-container {
     display: grid;
-    gap: 40px;
-    justify-content: center;
-    margin-top: 40px;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ajuste para garantir que se adaptem bem */
-}
-
-@media (max-width: 768px) {
-    .skills-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas para telas menores */
-        gap: 20px; /* Reduz o espaço entre os itens */
-    }
-}
-
-@media (max-width: 480px) {
-    .skills-container {
-        grid-template-columns: repeat(2, 1fr); /* Mantém 2 colunas em telas pequenas */
-        gap: 15px; /* Espaçamento ainda menor */
-    }
+    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0 auto;
+    max-width: 980px;
 }
 
 .skill-wrapper {
+    align-items: center;
+    -webkit-backdrop-filter: blur(26px) saturate(170%);
+    backdrop-filter: blur(26px) saturate(170%);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    box-shadow: var(--shadow-soft);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    min-height: 210px;
+    padding: 24px 16px 20px;
     position: relative;
-    width: 100%; /* 100% para se adaptar ao grid */
+    transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+    width: 100%;
 }
+
+.skill-wrapper:hover {
+    background: var(--surface-strong);
+    box-shadow: var(--shadow);
+    transform: translateY(-6px);
+}
+
 .skill-circle canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-  }
-.skill-circle {
-    border-radius: 50%;
-    position: relative;
-    width: 100px; /* Ajustado para melhor visualização em telas pequenas */
-    height: 100px;
-    margin-bottom: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.skill-circle {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.34)),
+        linear-gradient(135deg, rgba(0, 122, 255, 0.08), rgba(52, 199, 89, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.76);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 12px 28px rgba(42, 55, 89, 0.12);
+    cursor: pointer;
+    height: 126px;
+    margin-bottom: 14px;
+    position: relative;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 126px;
+}
+
 .skill-circle i {
     font-size: 40px;
-    color: #333;
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
 .skill-circle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 18px 34px rgba(42, 55, 89, 0.18);
+    transform: scale(1.04);
 }
 
 .skill-name {
-    font-size: 16px;
-    color: #333;
+    color: var(--ink);
+    font-size: 1.04rem;
+    font-weight: 790;
+    line-height: 1.25;
     text-align: center;
 }
 
-/* Tooltip para o nível da habilidade */
+.skill-percent {
+    color: var(--muted);
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 740;
+    margin-top: 4px;
+}
+
 .tooltip {
-    position: absolute;
-    bottom: 100%; /* Posiciona o tooltip acima do círculo */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    padding: 5px;
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    background: rgba(16, 24, 39, 0.86);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 6px;
+    bottom: calc(100% + 8px);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    left: 50%;
     opacity: 0;
+    padding: 6px 9px;
+    position: absolute;
+    transform: translateX(-50%) translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
     white-space: nowrap;
-    z-index: 1;
+    z-index: 5;
 }
 
 .skill-circle:hover .tooltip {
     opacity: 1;
+    transform: translateX(-50%) translateY(0);
     visibility: visible;
+}
+
+@media (max-width: 900px) {
+    .skills-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-container {
+        gap: 12px;
+    }
+
+    .skill-wrapper {
+        border-radius: 20px;
+        min-height: 176px;
+        padding: 18px 10px 16px;
+    }
+
+    .skill-circle {
+        height: 104px;
+        width: 104px;
+    }
+
+    .skill-circle i {
+        font-size: 32px;
+    }
 }

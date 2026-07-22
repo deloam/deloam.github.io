@@ -5,46 +5,56 @@ import './Projects.css'; // Importa o CSS
 const projectsData = [
   {
     title: 'System OS',
-    technologies: ['typescript', 'react', 'tailwind-css'],
-    description: 'A little more about me. Also looks like Windows.',
-    icon: 'fa-solid fa-microchip', // Ícone de exemplo
+    technologies: ['TypeScript', 'React', 'Tailwind CSS'],
+    description: 'Uma experiência interativa sobre mim inspirada em sistemas operacionais.',
+    icon: 'fa-solid fa-microchip',
+    accent: '#007aff',
   },
   {
     title: 'Studay',
-    technologies: ['typescript', 'react', 'tailwind-css'],
-    description: 'See your homework in an organized and clean way.',
-    icon: 'fa-solid fa-book', // Ícone de exemplo
+    technologies: ['TypeScript', 'React', 'Tailwind CSS'],
+    description: 'Organização limpa para acompanhar tarefas, estudos e rotina acadêmica.',
+    icon: 'fa-solid fa-book',
+    accent: '#34c759',
   },
   {
     title: 'Quizzed!',
-    technologies: ['typescript', 'react', 'tailwind-css'],
-    description: 'A quiz app built with modern technologies.',
-    icon: 'fa-solid fa-face-meh-blank', // Ícone de exemplo
+    technologies: ['TypeScript', 'React', 'Tailwind CSS'],
+    description: 'Aplicativo de quiz com fluxo ágil, visual direto e tecnologias modernas.',
+    icon: 'fa-solid fa-bolt',
+    accent: '#ff9f0a',
   },
   {
     title: 'Portfolio',
-    technologies: ['typescript', 'next.js', 'styled-components'],
-    description: 'My personal portfolio built with Next.js and styled-components.',
-    icon: 'fa-solid fa-face-meh-blank', // Ícone de exemplo
+    technologies: ['TypeScript', 'Next.js', 'Styled Components'],
+    description: 'Portfólio pessoal com foco em apresentação, performance e presença digital.',
+    icon: 'fa-solid fa-window-restore',
+    accent: '#af52de',
   }
 ];
 
 const Projects = () => {
   return (
-    <section className='projects-section' id="projects" data-aos="fade-up" data-aos-delay="200">
-      <h3 className='h3x'>🌐 PROJETOS</h3>
+    <section className='projects-section' id="projects">
+      <h3 className='section-heading'>
+        <i className="fa-solid fa-cube"></i>
+        Projetos
+      </h3>
       <div className="project-container">
         {projectsData.map((project, index) => (
-          <div key={index} className="project-item">
+          <article key={index} className="project-item" style={{ '--accent': project.accent }}>
+            <span className="project-number">{String(index + 1).padStart(2, '0')}</span>
             <div className='project-image'>
-              <i className={project.icon}></i> {/* Renderiza o ícone */}
+              <i className={project.icon}></i>
             </div>
             <h3 className="project-title">{project.title}</h3>
-            <p className="project-tech">
-              {project.technologies.join(' • ')}
-            </p>
+            <div className="project-tech">
+              {project.technologies.map((technology) => (
+                <span key={technology}>{technology}</span>
+              ))}
+            </div>
             <p className="project-description">{project.description}</p>
-          </div>
+          </article>
         ))}
       </div>
     </section>
@@ -52,4 +62,3 @@ const Projects = () => {
 };
 
 export default Projects;
-

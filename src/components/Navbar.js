@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 import { ReactComponent as Logo } from '../assets/images/logo.svg';
-import {ReactComponent as CyclistImage} from '../assets/images/cyclist.svg';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -42,20 +42,26 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo" onClick={scrollToTop}>
+      <button className="navbar-logo" onClick={scrollToTop} aria-label="Voltar ao topo">
         <Logo className='logo-svg' />
-      </div>
-      <button className="menu-toggle" onClick={toggleMenu} ref={toggleButtonRef}>
+      </button>
+      <button
+        className={`menu-toggle ${isOpen ? 'active' : ''}`}
+        onClick={toggleMenu}
+        ref={toggleButtonRef}
+        aria-label="Abrir menu"
+        aria-expanded={isOpen}
+      >
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
       </button>
       <div className={`overlay ${isOpen ? 'active' : ''}`} ref={overlayRef}></div>
       <ul className={`nav-links ${isOpen ? 'active' : ''}`} ref={menuRef}>
-        <li><a href="#biography" onClick={handleMenuItemClick}>Biografia</a></li>
-        <li><a href="#skills" onClick={handleMenuItemClick}>Habilidades</a></li>
-        <li><a href="#projects" onClick={handleMenuItemClick}>Projetos</a></li>
-        <li><a href="#contact" onClick={handleMenuItemClick}>Contato</a></li>
+        <li><a href="#biography" onClick={handleMenuItemClick}><i className="fa-solid fa-user"></i>Biografia</a></li>
+        <li><a href="#skills" onClick={handleMenuItemClick}><i className="fa-solid fa-layer-group"></i>Habilidades</a></li>
+        <li><a href="#projects" onClick={handleMenuItemClick}><i className="fa-solid fa-cube"></i>Projetos</a></li>
+        <li><a href="#contact" onClick={handleMenuItemClick}><i className="fa-solid fa-paper-plane"></i>Contato</a></li>
       </ul>
     </nav>
   );

@@ -1,214 +1,213 @@
-/* navbar.css */
-
-/* Estilo geral do Navbar */
 .navbar {
-    position: fixed;
-    top: 0;
-    height: 60px;
-    width: 100%;
-    background: #0b0334;
-    color: white;
-    display: flex;
-    justify-content: space-between;
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
     align-items: center;
-    padding: 30px 20px;
-    z-index: 1000;
+    backdrop-filter: blur(28px) saturate(180%);
+    background: rgba(255, 255, 255, 0.66);
+    border: 1px solid rgba(255, 255, 255, 0.76);
+    border-radius: 999px;
+    box-shadow: 0 18px 45px rgba(42, 55, 89, 0.14);
     box-sizing: border-box;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Evita overflow */
-}
-
-.navbar ul li a:hover {
-    background: #185073;
-    border-radius: 4px;
-}
-
-.cyclist-svg {
-    background-color: white;
-    color: #0ff;
-    fill: white;
-    height: auto;
-    width: 50px;
-    /* Ajuste conforme necessário */
-    margin-left: 10px;
-    /* Espaçamento entre o ciclista e a logo */
-    animation: pedal 1s infinite;
-    /* Animação do ciclista pedalando */
-}
-
-@keyframes pedal {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    50% {
-        transform: rotate(15deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-
-/* Estilo do logo */
-.navbar-logo {
+    color: var(--ink);
     display: flex;
+    height: 68px;
+    justify-content: space-between;
+    left: 50%;
+    margin: 0 auto;
+    padding: 8px 10px 8px 18px;
+    position: fixed;
+    top: 16px;
+    transform: translateX(-50%);
+    width: min(1120px, calc(100% - 32px));
+    z-index: 1000;
+}
+
+.navbar-logo {
     align-items: center;
+    background: transparent;
+    border: 0;
+    color: var(--ink);
     cursor: pointer;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    padding: 0;
+    width: 62px;
 }
 
 .logo-svg {
-    fill: white;
-    width: 80px;
+    fill: currentColor;
     height: auto;
+    transition: transform 0.25s ease;
+    width: 58px;
 }
 
-/* Estilo do botão do menu */
+.navbar-logo:hover .logo-svg {
+    transform: scale(1.04);
+}
+
 .menu-toggle {
-    display: none;
-    flex-direction: column;
+    align-items: center;
     background: transparent;
     border: none;
+    border-radius: 999px;
     cursor: pointer;
+    display: none;
+    height: 44px;
+    justify-content: center;
     padding: 0;
+    position: relative;
+    width: 44px;
     z-index: 1001;
-    /* Certifique-se de que está acima dos outros elementos */
 }
 
-/* Barras do menu hamburger */
 .menu-toggle .bar {
-    width: 25px;
-    height: 3px;
-    background: white;
-    margin: 3px 0;
-    transition: 0.5s;
+    background: var(--ink);
+    border-radius: 999px;
+    height: 2px;
+    position: absolute;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+    width: 22px;
 }
 
-/* Estilo do overlay */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    /* Cor do overlay */
+.menu-toggle .bar:nth-child(1) {
+    transform: translateY(-7px);
+}
+
+.menu-toggle .bar:nth-child(3) {
+    transform: translateY(7px);
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+.overlay {
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    background: rgba(16, 24, 39, 0.18);
+    height: 100%;
+    position: fixed;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    transition: opacity 0.3s ease;
+    width: 100%;
     z-index: 800;
-    /* Certifique-se de que está acima dos outros elementos */
 }
 
 .overlay.active {
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
 }
 
-/* Estilo das links de navegação */
 .nav-links {
-    list-style: none;
+    align-items: center;
     display: flex;
-    padding: 0;
+    gap: 4px;
+    list-style: none;
     margin: 0;
-    gap: 20px;
+    padding: 0;
 }
 
 .nav-links li {
-    width: 100%;
-    /* Faz o <li> ocupar 100% da largura */
     text-align: center;
-    padding: 20px 0;
-    transition: background-color 0.3s ease;
 }
 
 .nav-links li a {
-    display: block;
-    color: white;
-    text-decoration: none;
+    align-items: center;
+    border-radius: 999px;
+    color: var(--soft-ink);
+    display: inline-flex;
+    font-size: 0.94rem;
     font-weight: bold;
-    padding: 8px 12px;
-    transition: background-color 0.5s, color 0.3s;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 13px;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
+}
+
+.nav-links li a i {
+    color: var(--blue);
+    font-size: 0.86rem;
 }
 
 .nav-links li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Adiciona uma leve alteração de cor ao passar o mouse */
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--ink);
+    transform: translateY(-1px);
 }
 
-/* Estilo dos links de navegação quando ativo */
 .nav-links.active {
     pointer-events: auto;
-    /* Habilita o clique quando o menu está aberto */
-    max-height: 300px;
-    /* Ajuste conforme necessário para o tamanho do menu */
-    opacity: 1;
-    /* Torna visível */
 }
 
-/* Estilo responsivo para telas pequenas */
 @media (max-width: 768px) {
     .navbar {
-        height: 60px;
+        border-radius: 28px;
+        height: 62px;
+        padding: 8px 10px 8px 14px;
         z-index: 1001;
     }
 
     .logo-svg {
-        width: 60px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: #05194a;
-        box-sizing: border-box;
-        max-height: 0;
-        /* Inicialmente escondido */
-        opacity: 0;
-        /* Inicialmente invisível */
-        transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
-        /* Animação de deslizamento */
-        transform: translateY(-100%);
-        /* Inicia fora da tela */
-        pointer-events: none;
-        /* Evita interação enquanto o menu estiver fechado */
-    }
-
-    .nav-links li {
-        padding: 0;
-        margin: 0;
-    }
-
-    .nav-links li a {
-        padding: 0;
-        margin: 0;
-    }
-
-    .nav-links.active {
-        padding: 0;
-        max-height: 280px;
-        opacity: 1;
-        transform: translateY(0);
-        /* Faz o menu descer ao abrir */
-        pointer-events: auto;
-        /* Habilita interação quando o menu está visível */
-    }
-
-    .nav-links.active li {
-        padding: 0;
-        margin: 0;
-    }
-
-    .nav-links.active li a {
-        padding: 5px;
-        margin: 0;
+        width: 52px;
     }
 
     .menu-toggle {
         display: flex;
+    }
+
+    .nav-links {
+        -webkit-backdrop-filter: blur(28px) saturate(180%);
+        backdrop-filter: blur(28px) saturate(180%);
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.78);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        gap: 6px;
+        left: 0;
+        opacity: 0;
+        padding: 12px;
+        pointer-events: none;
+        position: absolute;
+        top: 72px;
+        transform: translateY(-12px);
+        transition: opacity 0.28s ease, transform 0.28s ease;
+        width: 100%;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links li a {
+        justify-content: center;
+        min-height: 48px;
+        width: 100%;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+}
+
+@media (max-width: 420px) {
+    .navbar {
+        top: 10px;
+        width: min(100% - 20px, 390px);
     }
 }

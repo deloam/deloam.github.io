@@ -1,85 +1,119 @@
-/* Container principal de projetos */
 .project-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Divisão em colunas responsivas */
-    gap: 20px;
-    padding: 20px;
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin: 0 auto;
-    max-width: 1200px; /* Largura máxima para limitar o layout */
+    max-width: 1040px;
 }
 
-/* Cada item de projeto */
 .project-item {
-    background-color: #05194aff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
+    -webkit-backdrop-filter: blur(26px) saturate(170%);
+    backdrop-filter: blur(26px) saturate(170%);
+    background: var(--surface);
+    background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.48)),
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 58%);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    box-shadow: var(--shadow-soft);
+    min-height: 270px;
+    overflow: hidden;
+    padding: 28px;
+    position: relative;
+    text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.project-item::before {
+    background: var(--accent);
+    content: "";
+    height: 4px;
+    left: 28px;
+    position: absolute;
+    right: 28px;
+    top: 0;
 }
 
 .project-item:hover {
-    transform: translateY(-10px); /* Elevação ao passar o mouse */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow);
+    transform: translateY(-8px);
 }
-.h3x{
-    color: #000;
+
+.project-number {
+    color: rgba(16, 24, 39, 0.28);
+    font-size: 0.84rem;
+    font-weight: 820;
+    position: absolute;
+    right: 28px;
+    top: 24px;
 }
-/* Estilo para a imagem */
+
 .project-image {
-    display: flex;
-    justify-content: center;
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
     align-items: center;
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin: 0 auto;
-}
-.project-image i{
-    font-size: 40px;
-    color: #fff !important;
+    backdrop-filter: blur(18px) saturate(150%);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 22px;
+    box-shadow: 0 12px 26px rgba(42, 55, 89, 0.12);
+    display: flex;
+    height: 68px;
+    justify-content: center;
+    margin-bottom: 22px;
+    width: 68px;
 }
 
-/* Estilo do título */
+.project-image i {
+    color: var(--accent) !important;
+    font-size: 28px;
+}
+
 .project-title {
-    color: #ffffff;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    color: var(--ink);
+    font-size: 1.45rem;
+    line-height: 1.15;
+    margin: 0 0 12px;
 }
 
-/* Estilo das tecnologias usadas */
 .project-tech {
-    color: #00aaff;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
 }
 
-/* Estilo da descrição */
+.project-tech span {
+    background: rgba(255, 255, 255, 0.76);
+    background: color-mix(in srgb, var(--accent) 13%, white);
+    border: 1px solid rgba(255, 255, 255, 0.84);
+    border-color: color-mix(in srgb, var(--accent) 20%, white);
+    border-radius: 999px;
+    color: var(--accent);
+    color: color-mix(in srgb, var(--accent) 70%, #101827);
+    font-size: 0.78rem;
+    font-weight: 780;
+    line-height: 1;
+    padding: 8px 10px;
+}
+
 .project-description {
-    color: #33a5be;
+    color: var(--muted);
     font-size: 1rem;
-    margin-bottom: 0;
+    margin: 0;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .project-container {
-        grid-template-columns: 1fr; /* Coluna única em telas pequenas */
+        grid-template-columns: 1fr;
     }
 
     .project-item {
-        padding: 15px;
+        border-radius: 24px;
+        min-height: 0;
+        padding: 24px;
     }
 
     .project-title {
         font-size: 1.3rem;
-    }
-
-    .project-tech {
-        font-size: 0.85rem;
-    }
-
-    .project-description {
-        font-size: 0.95rem;
     }
 }
