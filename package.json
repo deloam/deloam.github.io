@@ -1,5 +1,5 @@
 {
-  "homepage": "https://deloam.github.io/portfolio",
+  "homepage": "https://deloam.github.io/",
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
     "framer-motion": "^11.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
